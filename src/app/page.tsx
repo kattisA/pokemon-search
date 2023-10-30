@@ -52,9 +52,12 @@ export default function Home() {
     fetchCharacter(searchValue);
   };
 
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   return (
       <main className="bg-pokemon-theme bg-no-repeat bg-cover bg-center relative flex min-h-screen flex-col items-center justify-center">
-
         <h1 className="pt-4 pb-8 bg-white shadow-xl ring-1 ring-gray-900/5 rounded-lg backdrop-blur-lg max-w-xl mx-auto w-full text-center text-4xl font-medium tracking-tight text-pokemon-dark-purple md:text-7xl ">
           Pokemon Search App
         </h1>
@@ -69,7 +72,7 @@ export default function Home() {
                 <div className="max-w-sm rounded overflow-hidden shadow-lg">
                   <img className="w-full" src={pokemon.sprites.other["official-artwork"].front_default} alt={pokemon.name} />
                   <div className="px-6 py-4">
-                    <div className="font-bold text-xl mb-2">{pokemon.name} </div>
+                    <div className="font-bold text-xl mb-2">{capitalizeFirstLetter(pokemon.name)} </div>
                     <p className="text-gray-700 text-base">
                       {pokemon.types.map(typeInfo => typeInfo.type.name).join(", ")}
                     </p>
