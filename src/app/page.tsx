@@ -1,10 +1,13 @@
 "use client";
 import React, {useState} from 'react';
 import SearchBar from "@/components/SearchBar";
+import Alert from "@/components/Alert"
+
 
 export default function Home() {
   const [pokemon, setPokemon] = useState(null);
   const [searchValue, setSearchValue] = useState("");
+  const [errorMessage, setErrorMessage] = useState('');
 
   const CACHE_DURATION = 86400000;
 
@@ -38,24 +41,30 @@ export default function Home() {
         setPokemon(null);
       }
     } catch (error) {
+      setErrorMessage("The Pokemon was not found. Try again!")
       setPokemon(null);
     }
   };
 
   const handleSearch = (event) => {
     event.preventDefault();
+    setErrorMessage('');
     fetchCharacter(searchValue);
   };
 
   return (
       <main className="bg-pokemon-theme bg-no-repeat bg-cover bg-center relative flex min-h-screen flex-col items-center justify-center">
 
-        <h1 className="pt-4 pb-8 bg-white shadow-xl ring-1 ring-gray-900/5 rounded-lg backdrop-blur-lg max-w-xl mx-auto w-full text-center text-4xl font-medium tracking-tight text-black md:text-7xl ">
+        <h1 className="pt-4 pb-8 bg-white shadow-xl ring-1 ring-gray-900/5 rounded-lg backdrop-blur-lg max-w-xl mx-auto w-full text-center text-4xl font-medium tracking-tight text-pokemon-dark-purple md:text-7xl ">
           Pokemon Search App
         </h1>
         <div className="bg-white p-12 shadow-xl ring-1 ring-gray-900/5 rounded-lg backdrop-blur-lg max-w-xl mx-auto w-full min-h-[200px] flex items-center justify-center">
           <div className="max-w-sm rounded overflow-hidden shadow-lg">
            <SearchBar searchValue={searchValue} setSearchValue={setSearchValue} handleSearch={handleSearch}/>
+            {errorMessage && (
+                <Alert message={errorMessage} title={"Error"}/>
+            )}
+
             {pokemon && (
                 <div className="max-w-sm rounded overflow-hidden shadow-lg">
                   <img className="w-full" src={pokemon.sprites.other["official-artwork"].front_default} alt={pokemon.name} />
@@ -68,7 +77,7 @@ export default function Home() {
                   <div className="px-6 pt-4 pb-2">
                     {pokemon.abilities.map(abilityInfo => (
                         <span key={abilityInfo.ability.name}
-                              className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                              className="inline-block bg-pokemon-purple rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
                               {abilityInfo.ability.name}
                         </span>
                     ))}

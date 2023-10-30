@@ -15,6 +15,7 @@ const config: Config = {
         'yellow-custom': '#feca1b',
         'dark-yellow-custom': '#e0b610',
         'dark-yellow-custom-hover': '#cba115',
+        'pokemon-purple': '#7157A2',
       },
       hoverBackgroundColor: {
         'yellow-custom-dark': '#e5b917',
@@ -26,6 +27,9 @@ const config: Config = {
       borderColor: {
         'yellow-border': '#fee48d',
         'dark-yellow-border': '#987910'
+      },
+      textColor: {
+        'pokemon-dark-purple': '#2d2240'
       }
     },
   },
