@@ -47,10 +47,12 @@ export default function Home() {
   };
 
   return (
-      <main className="relative flex min-h-screen flex-col items-center justify-center">
-        <h1 className="pt-4 pb-8 bg-gradient-to-br from-black via-[#171717] to-[#575757] bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl">
-          Pokemon Search App</h1>
-        <div className="bg-white/30 p-12 shadow-xl ring-1 ring-gray-900/5 rounded-lg backdrop-blur-lg max-w-xl mx-auto w-full min-h-[200px]">
+      <main className="bg-pokemon-theme bg-no-repeat bg-cover bg-center relative flex min-h-screen flex-col items-center justify-center">
+
+        <h1 className="pt-4 pb-8 bg-white shadow-xl ring-1 ring-gray-900/5 rounded-lg backdrop-blur-lg max-w-xl mx-auto w-full text-center text-4xl font-medium tracking-tight text-black md:text-7xl ">
+          Pokemon Search App
+        </h1>
+        <div className="bg-white p-12 shadow-xl ring-1 ring-gray-900/5 rounded-lg backdrop-blur-lg max-w-xl mx-auto w-full min-h-[200px] flex items-center justify-center">
           <div className="max-w-sm rounded overflow-hidden shadow-lg">
             <form onSubmit={handleSearch}>
               <label htmlFor="default-search"
