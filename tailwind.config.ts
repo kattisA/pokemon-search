@@ -15,6 +15,7 @@ const config: Config = {
         'yellow-custom': '#feca1b',
         'dark-yellow-custom': '#e0b610',
         'dark-yellow-custom-hover': '#cba115',
+        'grey-blue': '#506c95',
         'pokemon-purple': '#7157A2',
       },
       hoverBackgroundColor: {

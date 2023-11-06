@@ -116,7 +116,7 @@ export default function Home() {
 
   return (
       <main className="bg-pokemon-theme bg-no-repeat bg-cover bg-center relative flex min-h-screen flex-col items-center justify-center">
-        <h1 className="pt-4 pb-8 bg-white shadow-xl ring-1 ring-gray-900/5 rounded-lg backdrop-blur-lg max-w-xl mx-auto w-full text-center text-4xl font-medium tracking-tight text-pokemon-dark-purple md:text-7xl ">
+        <h1 className="pt-4 pb-8 bg-white shadow-xl ring-1 ring-gray-900/5 rounded-lg backdrop-blur-lg max-w-xl mx-auto w-full text-center text-3xl font-medium tracking-tight text-pokemon-dark-purple ">
           Pokemon Search App
         </h1>
         <div className="bg-white p-12 shadow-xl ring-1 ring-gray-900/5 rounded-lg backdrop-blur-lg max-w-xl mx-auto w-full min-h-[200px] flex items-center justify-center">
@@ -131,10 +131,10 @@ export default function Home() {
                   <img className="w-full" src={pokemon.basic.sprites.other["official-artwork"].front_default} alt={pokemon.basic.name} />
                   <div className="px-6 py-4">
                     <div className="font-bold text-xl mb-2">{capitalizeFirstLetter(pokemon.basic.name)} </div>
-                    <div className="px-6 pt-4 pb-2">
+                    <div className="px-2 pt-4 pb-2">
                       {pokemon.basic.types.map(typeInfo => (
                           <span key={typeInfo.type.name}
-                                className="inline-block bg-pokemon-purple rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
+                                className="inline-block bg-grey-blue rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
                               {typeInfo.type.name}
                         </span>
                       ))}
@@ -157,6 +157,18 @@ export default function Home() {
             )}
           </div>
         </div>
+        <footer className="bg-white border-t mt-8 py-4">
+          <div className="max-w-xl mx-auto px-4 text-center">
+            <p className="text-sm text-gray-600">
+              Created by
+              {' '}
+              <a href="https://kattisa.github.io/" target="_blank" rel="noopener noreferrer" className="text-pokemon-dark-purple hover:text-pokemon-light-purple">
+                Kattis
+              </a>
+            </p>
+          </div>
+        </footer>
+
       </main>
 
   );
