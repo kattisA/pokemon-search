@@ -2,6 +2,7 @@
 import React, {useState} from 'react';
 import SearchBar from "@/components/SearchBar";
 import Alert from "@/components/Alert"
+import Image from 'next/image';
 
 interface PokemonType {
     slot: number;
@@ -66,7 +67,7 @@ export default function Home() {
 
     const CACHE_DURATION = 86400000;
 
-    const fetchCharacter = async (searchValue) => {
+    const fetchCharacter = async (searchValue: string) => {
         const currentTime = new Date().getTime();
         const storedData = localStorage.getItem(searchValue.toLowerCase());
 
@@ -92,7 +93,7 @@ export default function Home() {
                 speciesResponse.json()
             ]);
 
-            const descriptionTextEntry = speciesDetails.flavor_text_entries.find(entry => entry.language.name === 'en');
+            const descriptionTextEntry = speciesDetails.flavor_text_entries.find((entry:any) => entry.language.name === 'en');
             const descriptionText = descriptionTextEntry ? descriptionTextEntry.flavor_text : "No description available.";
 
             // Fetch evolution chain
@@ -130,13 +131,13 @@ export default function Home() {
         }
     };
 
-    const handleSearch = (event) => {
+    const handleSearch = (event:any) => {
         event.preventDefault();
         setErrorMessage('');
         fetchCharacter(searchValue);
     };
 
-    const capitalizeFirstLetter = (string) => {
+    const capitalizeFirstLetter = (string:string) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
@@ -156,8 +157,13 @@ export default function Home() {
 
                     {pokemon.basic && (
                         <div className="max-w-sm rounded overflow-hidden shadow-lg">
-                            <img className="w-full" src={pokemon.basic.sprites.other["official-artwork"].front_default}
-                                 alt={pokemon.basic.name}/>
+                            <Image
+                                src={pokemon.basic.sprites.other["official-artwork"].front_default}
+                                alt={pokemon.basic.name}
+                                width={384}
+                                height={384}
+                                layout="responsive"
+                            />
                             <div className="px-6 py-4">
                                 <h2
                                     className="font-bold text-xl mb-2">{capitalizeFirstLetter(pokemon.basic.name)} </h2>
