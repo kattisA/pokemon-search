@@ -188,8 +188,8 @@ export default function Home() {
                                     <h2 className="font-bold text-xl mb-2">Evolutions</h2>
                                         {pokemon.evolutionNames.map((name, index) => (
                                             !(pokemon.basic) || name === pokemon.basic.name ?
-                                           <span className="font-bold"> {capitalizeFirstLetter(name)}</span> :
-                                                <span> {capitalizeFirstLetter(name)}</span>
+                                           <span className="font-bold" key={name}> {capitalizeFirstLetter(name)}</span> :
+                                                <span key={name}> {capitalizeFirstLetter(name)}</span>
                                         ))}
                                 </div>
                             )
