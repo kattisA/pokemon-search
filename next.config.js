@@ -3,11 +3,8 @@ const nextConfig = {
     images: {
         domains: ['raw.githubusercontent.com'],
     },
-    exportPathMap: async function () {
-        return {
-            '/': { page: '/' },
-        };
-    },
+    trailingSlash: true,
+    output: 'export',
 };
 
 module.exports = nextConfig;
