@@ -73,19 +73,26 @@ export default function Home() {
         const keys = Object.keys(localStorage);
         if (keys.length > MAX_CACHE_ITEMS) {
             let oldestKey = keys[0];
-            let oldestTimestamp = JSON.parse(localStorage.getItem(oldestKey)).timestamp;
+            let oldestItem = localStorage.getItem(oldestKey);
+            let oldestTimestamp = oldestItem ? JSON.parse(oldestItem).timestamp : Infinity;
 
             keys.forEach(key => {
-                const timestamp = JSON.parse(localStorage.getItem(key)).timestamp;
-                if (timestamp < oldestTimestamp) {
-                    oldestTimestamp = timestamp;
-                    oldestKey = key;
+                const item = localStorage.getItem(key);
+                if (item) {
+                    const timestamp = JSON.parse(item).timestamp;
+                    if (timestamp < oldestTimestamp) {
+                        oldestTimestamp = timestamp;
+                        oldestKey = key;
+                    }
                 }
             });
 
-            localStorage.removeItem(oldestKey);
+            if (oldestKey) {
+                localStorage.removeItem(oldestKey);
+            }
         }
     };
+
 
     const fetchCharacter = async (searchValue: string) => {
         const currentTime = new Date().getTime();
