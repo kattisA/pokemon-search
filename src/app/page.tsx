@@ -67,6 +67,26 @@ export default function Home() {
 
     const CACHE_DURATION = 86400000;
 
+    const MAX_CACHE_ITEMS = 20;
+
+    const evictCache = () => {
+        const keys = Object.keys(localStorage);
+        if (keys.length > MAX_CACHE_ITEMS) {
+            let oldestKey = keys[0];
+            let oldestTimestamp = JSON.parse(localStorage.getItem(oldestKey)).timestamp;
+
+            keys.forEach(key => {
+                const timestamp = JSON.parse(localStorage.getItem(key)).timestamp;
+                if (timestamp < oldestTimestamp) {
+                    oldestTimestamp = timestamp;
+                    oldestKey = key;
+                }
+            });
+
+            localStorage.removeItem(oldestKey);
+        }
+    };
+
     const fetchCharacter = async (searchValue: string) => {
         const currentTime = new Date().getTime();
         const storedData = localStorage.getItem(searchValue.toLowerCase());
@@ -115,6 +135,7 @@ export default function Home() {
             };
 
             setPokemon(newPokemonData);
+            evictCache();
 
             localStorage.setItem(searchValue, JSON.stringify({
                 timestamp: new Date().getTime(),

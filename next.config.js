@@ -6,6 +6,7 @@ const nextConfig = {
     },
     trailingSlash: true,
     output: 'export',
+    basePath: '/pokemon-search',
 };
 
 module.exports = nextConfig;

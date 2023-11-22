@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        'pokemon-theme': "url('/pokemon_frenchie.jpg')",
+        'pokemon-theme': "url('/pokemon-search/pokemon_frenchie.jpg')",
       },
       backgroundColor: {
         'yellow-custom': '#feca1b',
